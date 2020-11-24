@@ -1,0 +1,6 @@
+<h1>Editing Article</h1>
+
+<%= render 'form', article: @article %>
+
+<%= link_to 'Delete', @article, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
+<%= link_to 'Back', articles_path, class:"btn btn-dark" %>

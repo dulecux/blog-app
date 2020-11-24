@@ -1,0 +1,29 @@
+<div class="jumbotron">
+  <h1 class="display-4"> <%= @article.title %></h1>
+  <p class="lead"><h5><%= @article.description %></h5></p>
+  <hr class="my-4">
+  <%= link_to 'Edit', edit_article_path(@article), class:"btn btn-secondary" %>
+  <%= link_to 'Back', articles_path, class:"btn btn-dark" %>
+  <br/><br/>
+  <h4>Comments (<%= @article.comments.size %>)</h4>
+
+  <% if (@article.comments.size != 0) %>
+     <% @article.comments.each do |comment| %>
+       <div class="card text-center card text-white bg-dark mb-3">
+           <div class="card-body">
+             <h5 class="card-title">Comment by: <%= comment.author_name %></h5>
+             <p class="card-text"><%= comment.body %></p>
+           </div>
+          <div class="card-footer text-muted">
+          <p>Posted <%= distance_of_time_in_words(comment.article.created_at, comment.created_at) %> later</p>
+          </div>
+         </div>
+         <br/>
+     <% end %>
+  <% end %>
+  <%= render 'comments/form' %>
+  <br/>
+  <%= link_to 'Back', articles_path %>
+</div>
+
+
