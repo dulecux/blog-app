@@ -1,5 +1,8 @@
 <div class="jumbotron">
   <h1 class="display-4"> <%= @article.title %></h1>
+  <% if @article.image.exists? %>
+    <p><%= image_tag @article.image.url, class:"img-thumbnail" %></p>
+  <% end %>  
  <p>
   Tags:
   <% @article.tags.each do |tag| %>
