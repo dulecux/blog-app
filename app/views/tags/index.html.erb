@@ -1,0 +1,23 @@
+<h1>Tags</h1>
+
+<table class="table table-striped table-bordered table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th>Name</th>
+      <th> </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tags.each do |tag| %>
+      <tr>
+        <td><%= link_to tag.name, tag %></td>
+        <td> <%= link_to 'Delete', tag, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to '<< Back to Articles List', articles_path, class:"btn btn-secondary" %>

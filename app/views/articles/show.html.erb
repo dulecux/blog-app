@@ -1,11 +1,19 @@
 <div class="jumbotron">
   <h1 class="display-4"> <%= @article.title %></h1>
+ <p>
+  Tags:
+  <% @article.tags.each do |tag| %>
+    <%= link_to tag.name, tag_path(tag) %>
+  <% end %>
+  <br/>
+</p>
   <p class="lead"><h5><%= @article.description %></h5></p>
   <hr class="my-4">
   <%= link_to 'Edit', edit_article_path(@article), class:"btn btn-secondary" %>
   <%= link_to 'Back', articles_path, class:"btn btn-dark" %>
+   <%= link_to 'Delete', @article, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
   <br/><br/>
-  <h4>Comments (<%= @article.comments.size %>)</h4>
+  <h4>Comments <span class="badge badge-secondary badge-pill"><%= @article.comments.size %></span></h4>
 
   <% if (@article.comments.size != 0) %>
      <% @article.comments.each do |comment| %>

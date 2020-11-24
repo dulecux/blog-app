@@ -1,6 +1,5 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
-
   # GET /articles
   # GET /articles.json
   def index
@@ -59,7 +58,7 @@ class ArticlesController < ApplicationController
   def destroy
     @article.destroy
     respond_to do |format|
-      format.html { redirect_to articles_url, notice: 'Article was successfully destroyed.' }
+      format.html { redirect_to articles_url, notice: 'Article was successfully deleted.' }
       format.json { head :no_content }
     end
   end
@@ -72,6 +71,6 @@ class ArticlesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def article_params
-      params.require(:article).permit(:title, :description)
+      params.require(:article).permit(:title, :description, :tag_list)
     end
 end
