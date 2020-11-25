@@ -1,5 +1,7 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_author!, except: [ :index, :show]
+  before_action :correct_author, only: [:edit, :update, :destroy]
   # GET /articles
   # GET /articles.json
   def index
@@ -63,6 +65,11 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def correct_author
+    @article = current_author.articles.find_by(id: params[:id])
+    redirect_to articles_path, notice: "Not Authorized To Edit This article" if@article.nil?
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_article
@@ -71,6 +78,6 @@ class ArticlesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def article_params
-      params.require(:article).permit(:title, :description, :tag_list, :image)
+      params.require(:article).permit(:title, :description, :tag_list, :image, :author_id)
     end
 end

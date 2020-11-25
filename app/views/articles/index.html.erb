@@ -7,6 +7,7 @@
     <tr>
       <th>Title</th>
       <th>Description</th>
+       <th>Author</th>
     </tr>
   </thead>
 
@@ -15,6 +16,7 @@
       <tr>
         <td><%= link_to article.title, article %></td>
         <td><%= article.description %></td>
+        <td><%= article.author.email %></td>
       </tr>
     <% end %>
   </tbody>

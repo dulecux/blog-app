@@ -12,9 +12,14 @@
 </p>
   <p class="lead"><h5><%= @article.description %></h5></p>
   <hr class="my-4">
+   
+   <% if author_signed_in? %>  
   <%= link_to 'Edit', edit_article_path(@article), class:"btn btn-secondary" %>
   <%= link_to 'Back', articles_path, class:"btn btn-dark" %>
    <%= link_to 'Delete', @article, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
+   <% else %>
+    <%= link_to 'Back', articles_path, class:"btn btn-dark" %>
+    <% end %>
   <br/><br/>
   <h4>Comments <span class="badge badge-secondary badge-pill"><%= @article.comments.size %></span></h4>
 
