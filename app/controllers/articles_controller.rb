@@ -72,6 +72,10 @@ class ArticlesController < ApplicationController
     redirect_to articles_path, notice: "Not Authorized To Edit This article" if@article.nil?
   end
 
+  def change_status
+    redirect_to articles_path, notice: "Redirect!"
+  end  
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_article
@@ -80,6 +84,6 @@ class ArticlesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def article_params
-      params.require(:article).permit(:title, :description, :tag_list, :image, :author_id)
+      params.require(:article).permit(:title, :description, :tag_list, :image, :author_id, :status)
     end
 end

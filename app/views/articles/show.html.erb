@@ -1,5 +1,12 @@
 <div class="jumbotron">
   <h1 class="display-4"> <%= @article.title %></h1>
+  <br/>
+       <% if (@article.status == 'draft') %>
+          <%= link_to 'Archived', article_change_status_path(@article), class:"btn btn-danger" %>
+       <% else %>
+          <%= link_to 'Archived', article_change_status_path(@article), class:"btn btn-danger disabled"%>
+       <% end %>     
+  <p><%= @article.status %></p>
   <% if @article.image.exists? %>
     <p><%= image_tag @article.image.url, class:"img-thumbnail" %></p>
   <% end %>  
@@ -9,7 +16,7 @@
     <%= link_to tag.name, tag_path(tag) %>
   <% end %>
   <br/>
-</p>
+  </p>
   <p class="lead"><h5><%= @article.description %></h5></p>
   <hr class="my-4">
    
@@ -41,5 +48,3 @@
   <br/>
   <%= link_to 'Back', articles_path %>
 </div>
-
-

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'articles#index'	
   resources :articles do
   	resources :comments
+  	get 'change_status'
   end
   resources :tags	
   #get 'home/index'
