@@ -73,7 +73,9 @@ class ArticlesController < ApplicationController
   end
 
   def change_status
-    redirect_to articles_path, notice: "Redirect!"
+    @article = Article.find_by_id(params[:article_id])
+    @article.update_attribute(:status, "archived")
+    redirect_to @article, notice: "An Article Status has been changed!"
   end  
 
   private

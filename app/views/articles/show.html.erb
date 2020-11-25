@@ -6,7 +6,7 @@
        <% else %>
           <%= link_to 'Archived', article_change_status_path(@article), class:"btn btn-danger disabled"%>
        <% end %>     
-  <p><%= @article.status %></p>
+  <p><% @article.status %></p>
   <% if @article.image.exists? %>
     <p><%= image_tag @article.image.url, class:"img-thumbnail" %></p>
   <% end %>  
