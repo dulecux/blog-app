@@ -18,7 +18,8 @@ class ArticlesController < ApplicationController
 
   # GET /articles/new
   def new
-    @article = Article.new
+    #@article = Article.new
+    @article = current_author.articles.build
   end
 
   # GET /articles/1/edit
@@ -28,7 +29,8 @@ class ArticlesController < ApplicationController
   # POST /articles
   # POST /articles.json
   def create
-    @article = Article.new(article_params)
+    #@article = Article.new(article_params)
+    @article = current_author.articles.build(article_params)
 
     respond_to do |format|
       if @article.save
