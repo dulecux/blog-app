@@ -34,6 +34,8 @@ class ArticlesController < ApplicationController
 
     respond_to do |format|
       if @article.save
+        # Tell the ArticleMailer to send a created_article email after save
+        ArticleMailer.with(article: @article).created_article.deliver_later
         format.html { redirect_to @article, notice: 'Article was successfully created.' }
         format.json { render :show, status: :created, location: @article }
       else
@@ -75,6 +77,8 @@ class ArticlesController < ApplicationController
   def change_status
     @article = Article.find_by_id(params[:article_id])
     @article.update_attribute(:status, "archived")
+    # Tell the ArticleMailer to send a updated_article email after status change
+    ArticleMailer.with(article: @article).updated_article.deliver_later
     redirect_to @article, notice: "An Article Status has been changed!"
   end  
 
